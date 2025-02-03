@@ -10,6 +10,10 @@
 - Working with an LLM to build the app
 
 
+## Miro
+
+We are taking [notes on Miro](https://miro.com/app/board/uXjVLmU7kKY=/)
+
 ## Features
 
 Via API:
