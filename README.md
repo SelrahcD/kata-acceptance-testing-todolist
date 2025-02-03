@@ -1,5 +1,15 @@
 # kata-acceptance-testing-todolist
 
+## Objectives
+
+- Implementing Acceptance Test using [Dave Farley 3 layers models](https://www.youtube.com/watch?v=pFSvOpqQNKQ)
+- Use Pact for Contract Testing between services
+- Good commit naming
+- Practicing Typescript
+- Creating a front-end app on top of an API
+- Working with an LLM to build the app
+
+
 ## Features
 
 Via API:
