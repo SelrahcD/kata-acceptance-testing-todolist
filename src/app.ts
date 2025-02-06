@@ -11,6 +11,12 @@ app.get('/', (req: Request, res: Response) => {
     res.json({ message: 'Welcome to Express + TypeScript Server' });
 });
 
+
+app.get('/list', (req: Request, res: Response) => {
+    res.json({ tasks: [] });
+});
+
+
 // Error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
