@@ -2,6 +2,12 @@ import request from 'supertest';
 import app from '../src/app';
 
 describe('Todo list app', () => {
+    let todoListApp: TodoListApp;
+
+    beforeEach(() => {
+        todoListApp = new TodoListApp()
+    })
+
     describe('GET /', () => {
         it('should return welcome message', async () => {
             const response = await request(app)
@@ -18,7 +24,6 @@ describe('Todo list app', () => {
 
     describe('List tasks in todo list', () => {
         it('when a list is created, it\'s an empty list', async () => {
-            const todoListApp = new TodoListApp()
             await todoListApp.assertTaskListIsEmpty();
         });
     });
