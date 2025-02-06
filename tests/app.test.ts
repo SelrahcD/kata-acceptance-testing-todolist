@@ -26,6 +26,17 @@ describe('Todo list app', () => {
         it('when a list is created, it\'s an empty list', async () => {
             await todoListApp.assertTaskListIsEmpty();
         });
+
+        it('added tasks to the list are displayed', async () => {
+            await todoListApp.addTask('Go to the grocery store')
+
+            const response = await request(app)
+                .get('/list')
+                .expect('Content-Type', /json/)
+                .expect(200);
+
+            expect(response.body).toEqual({tasks: ['Go to the grocery store']});
+        })
     });
 });
 
@@ -39,4 +50,7 @@ class TodoListApp {
         expect(response.body).toEqual({tasks: []});
     }
 
+    async addTask(goToTheGroceryStore: string) {
+        
+    }
 }
