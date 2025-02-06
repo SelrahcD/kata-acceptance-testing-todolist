@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 
 const app = express();
 const port = process.env.PORT || 3000;
+let tasks: string[] = [];
 
 // Middleware for JSON parsing
 app.use(express.json());
@@ -13,7 +14,12 @@ app.get('/', (req: Request, res: Response) => {
 
 
 app.get('/list', (req: Request, res: Response) => {
-    res.json({ tasks: [] });
+    res.json({ tasks: tasks });
+});
+
+app.post('/list', (req: Request, res: Response) => {
+    tasks.push(req.body.task)
+    res.json({  });
 });
 
 

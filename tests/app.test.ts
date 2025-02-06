@@ -30,12 +30,7 @@ describe('Todo list app', () => {
         it('added tasks to the list are displayed', async () => {
             await todoListApp.addTask('Go to the grocery store')
 
-            const response = await request(app)
-                .get('/list')
-                .expect('Content-Type', /json/)
-                .expect(200);
-
-            expect(response.body).toEqual({tasks: ['Go to the grocery store']});
+            await todoListApp.assertTodoListContainsTask('Go to the grocery store');
         })
     });
 });
@@ -46,11 +41,27 @@ class TodoListApp {
             .get('/list')
             .expect('Content-Type', /json/)
             .expect(200);
-
         expect(response.body).toEqual({tasks: []});
     }
 
-    async addTask(goToTheGroceryStore: string) {
-        
+    async assertTodoListContainsTask(taskName: string) {
+        const response = await request(app)
+            .get('/list')
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(response.body).toEqual({tasks: [taskName]});
+    }
+
+    //TODO: test by adding multiple tasks
+    //FIXME: expect to remove or move?
+    //FIXME: should be a status code equal to 201
+    //FIXME: maybe we have to test the status code in other place, another type of test
+    async addTask(taskName: string) {
+        await request(app)
+            .post('/list')
+            .send({task: taskName})
+            .expect(200)
+
     }
 }
