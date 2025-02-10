@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 
 
 
-const todoApp = () => {
+const todoAppServer = () => {
     const app = express();
 
     let tasks: string[] = [];
@@ -37,13 +37,6 @@ const todoApp = () => {
 
 
 
-// Only start the server if this file is run directly
-if (require.main === module) {
-    const port = process.env.PORT || 3000;
-    const app = todoApp();
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
-}
 
-export {todoApp};
+
+export default todoAppServer;

@@ -1,5 +1,5 @@
 import request from 'supertest';
-import {todoApp} from '../src/app';
+import todoAppServer from '../src/app';
 import {Express, response} from "express";
 
 describe('Todo list app', () => {
@@ -7,7 +7,7 @@ describe('Todo list app', () => {
     let app: Express;
 
     beforeEach(() => {
-        app = todoApp();
+        app = todoAppServer();
         todoListApp = new TodoListApp(app)
     })
 
