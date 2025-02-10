@@ -54,9 +54,6 @@ class TodoListApp {
     }
 
     //TODO: test by adding multiple tasks
-    //FIXME: expect to remove or move?
-    //FIXME: should be a status code equal to 201
-    //FIXME: maybe we have to test the status code in other place, another type of test
     async addTask(taskName: string) {
         await request(app)
             .post('/list')
