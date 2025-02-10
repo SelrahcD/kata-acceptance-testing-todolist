@@ -1,11 +1,12 @@
 import request from 'supertest';
 import app from '../src/app';
+import {Express, response} from "express";
 
 describe('Todo list app', () => {
     let todoListApp: TodoListApp;
 
     beforeEach(() => {
-        todoListApp = new TodoListApp()
+        todoListApp = new TodoListApp(app)
     })
 
     describe('GET /', () => {
@@ -36,8 +37,15 @@ describe('Todo list app', () => {
 });
 
 class TodoListApp {
+    private app: Express;
+
+    
+    constructor(app: Express) {
+        this.app = app;
+    }
+
     async assertTaskListIsEmpty() {
-        const response = await request(app)
+        const response = await request(this.app)
             .get('/list')
             .expect('Content-Type', /json/)
             .expect(200);
@@ -45,7 +53,7 @@ class TodoListApp {
     }
 
     async assertTodoListContainsTask(taskName: string) {
-        const response = await request(app)
+        const response = await request(this.app)
             .get('/list')
             .expect('Content-Type', /json/)
             .expect(200);
@@ -55,7 +63,7 @@ class TodoListApp {
 
     //TODO: test by adding multiple tasks
     async addTask(taskName: string) {
-        await request(app)
+        await request(this.app)
             .post('/list')
             .send({task: taskName})
             .expect(200)
