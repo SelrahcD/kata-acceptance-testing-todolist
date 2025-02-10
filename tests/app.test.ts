@@ -1,11 +1,13 @@
 import request from 'supertest';
-import app from '../src/app';
+import {todoApp} from '../src/app';
 import {Express, response} from "express";
 
 describe('Todo list app', () => {
     let todoListApp: TodoListApp;
+    let app: Express;
 
     beforeEach(() => {
+        app = todoApp();
         todoListApp = new TodoListApp(app)
     })
 
