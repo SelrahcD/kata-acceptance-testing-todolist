@@ -1,7 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 
 const app = express();
-const port = process.env.PORT || 3000;
 let tasks: string[] = [];
 
 // Middleware for JSON parsing
@@ -31,6 +30,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 // Only start the server if this file is run directly
 if (require.main === module) {
+    const port = process.env.PORT || 3000;
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
     });
